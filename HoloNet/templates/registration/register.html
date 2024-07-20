@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block title%}
+    Register
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center font-bold text-4xl">Register Form</h2>
+<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 mx-0 my-20 bg-gray-400 rounded-lg shadow-md">
+    <form method='post'>
+      {% csrf_token %}            
+      {{form | crispy}}
+      <div class="flex justify-between">
+        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5">Register</button>
+        <a class="px-5 py-2.5" href="{% url 'login' %}">Login</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
