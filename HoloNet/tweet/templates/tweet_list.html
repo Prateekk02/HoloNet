@@ -5,26 +5,23 @@ View Tweets
 {% endblock %}
 
 {% block content %}
-
-
-<a href="{% url 'tweet_create' %}"><button type="button" class=" text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Create a Tweet</button></a>
-
+<section class="bg-gray-100 p-4 mb-4">
+    <a href="{% url 'tweet_create' %}"><button type="button" class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 ">Create a Tweet</button></a>
+  </section>
 </p>
-<div class="flex flex-row gap-4">
+<div class="grid grid-cols-1 md:grid-cols-3">
     {% for tweet in tweets %}       
 
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-10 m-10">
-            <a href="#">
+            
                 {% if tweet.photo_url %}
                     <img class="rounded-t-lg" src="{{tweet.photo.url}}" alt="" />
                 {% endif %}
                 
-            </a>
-            <div class="p-5">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{tweet.user.username}}</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{tweet.text}}</p>
+            
+            <div class="p-5 ">                
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{tweet.user.username}}</h5>            
+                <p class="m-3 font-normal text-gray-700 dark:text-gray-400 text-justify">{{tweet.text}}</p>
                 {% if tweet.user == user %}
                 <a href="{% url 'tweet_edit' tweet.id %}" >
                     <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -35,8 +32,7 @@ View Tweets
                         </svg>
                     
                     </button>
-                </a>
-                
+                </a>               
                 
                 <a href="{% url 'tweet_delete' tweet.id %}" >
                     <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
@@ -52,5 +48,6 @@ View Tweets
 
     {% endfor %}
 </div>
+
 
 {% endblock %}

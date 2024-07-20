@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %}
 {% if form.instance.pk %}
     Edit Tweet
@@ -10,22 +10,31 @@
 {% endblock %}
 
 {% block content %}
-<h2>
+<h2 class="text-center font-bold text-4xl">
     {% if form.instance.pk %}
         Edit Tweet
     {% else %}
         Create Tweet
     {% endif %}
-
+</h2>
 
 <form method="post", enctype="multipart/form-data" >
     {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Submit</button>
-
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 mx-0 my-20 bg-gray-400 rounded-lg shadow-md">
+        {{form | crispy}}
+        <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
+    </div>
 </form>
-<button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"><a href="{%url 'tweet_list'%}">Back to Tweet List</a></button>
-</h2>
+<a href="{%url 'tweet_list'%}">
+<button type="button" class="w-full flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+    <svg class="w-5 h-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+    </svg>
+    <span>Back to Tweet List</span>
+</button>
+</a>
+
+
 
 
 {% endblock %}
