@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'tweet',
     'tailwind',
     'theme',
-    
-    
-     'django_browser_reload',
+    'crispy_forms',
+    'crispy_tailwind',
+        
+    'django_browser_reload',
 ]
 
 TAILWIND_APP_NAME = 'theme' 
+CRISPY_TEMPLATE_PACK = 'tailwind'
 INTERNAL_IPS = ['127.0.0.1']
 
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
@@ -58,8 +60,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
     
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
@@ -142,3 +143,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_URL = '/accounts/login'
+
+LOGIN_REDIRECT_URL = '/tweet/'
+LOGOUT_REDIRECT_URL = '/tweet/'
