@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from .models import Tweet
+from .models import Tweet, EmailOTP
 from .forms import TweetForm, UserRegistrationForm
 from django.shortcuts import get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from .models import EmailOTP
+import random
 # Create your views here.
 
 def index(request):
@@ -77,7 +81,39 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
-        
+
+# OTP Verification Logic
+
+# def generate_otp():
+#     return str(random.randint(100000, 999999))
+
+# def send_otp_email(request, user):
+#     otp = generate_otp()
+#     email_otp = EmailOTP.objects.create(user=user, otp=otp)
+    
+#     subject = "Your OTP Verification"
+#     message = render_to_string("otp_email.html", {"otp": otp})
+#     send_mail(subject, message, "from@example.com", [user.email])
+    
+# def verify_otp(request):
+#     if request.method == "POST":
+#         otp = request.POST.get("otp")
+#         user = request.user
+
+#         try:
+#             email_otp = EmailOTP.objects.get(user=user, otp=otp)
+#             # Check if OTP is expired (e.g., 15 minutes)
+#             if # OTP is not expired:
+#                 # Mark OTP as used
+#                 email_otp.delete()
+#                 return redirect("home")
+#             else:
+#                 return render(request, "verify_otp.html", {"error": "OTP expired"})
+#         except EmailOTP.DoesNotExist:
+#             return render(request, "verify_otp.html", {"error": "Invalid OTP"})
+
+#     return render(request, "verify_otp.html")
+    
     
     
     

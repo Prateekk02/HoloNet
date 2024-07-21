@@ -12,3 +12,8 @@ class Tweet(models.Model):
     def __str__(self):
         return f'{self.user.username} - {self.text[:10]}'
     
+
+class EmailOTP(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)

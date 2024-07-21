@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
+    'django_otp',
+    'django_otp.plugins.otp_email',
         
     'django_browser_reload',
 ]
