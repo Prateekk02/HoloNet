@@ -16,7 +16,7 @@ HoloNet allows users to:
 **Steps:**
 
 Run the following commands<br>
-- git clone https://github.com/codeWalker66/HoloNet.git
+- Clone this repository.
 
 - pip install -r requirements.txt
 - cd HoloNet
